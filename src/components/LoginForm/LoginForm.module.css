@@ -1,0 +1,32 @@
+.container {
+    max-width: 300px;
+    /* display: flex;
+    flex-direction: column; */
+    /* gap: 16px; */
+
+    margin-top: 50px;
+}
+
+.label {
+    /* display: flex;
+    flex-direction: column;
+    gap: 8px; */
+    height: 60px;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+
+
+}
+
+.label input {
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.error {
+    color: red;
+}

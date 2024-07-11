@@ -1,5 +1,6 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOps";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContact } from "./operations";
+import { logout } from "../auth/operations";
 // import { selectNameFilter } from "./filtersSlice";
 
 const contactsSlice = createSlice({
@@ -51,6 +52,11 @@ const contactsSlice = createSlice({
     builder.addCase(deleteContact.rejected, (state) => {
       state.loading = false;
       state.error = true;
+    });
+    builder.addCase(logout.fulfilled, (state) => {
+      state.items = [];
+      state.loading = false;
+      state.error = null;
     });
   },
 });

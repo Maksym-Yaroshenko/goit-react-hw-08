@@ -4,6 +4,9 @@ import { useId } from "react";
 import css from "./LoginForm.module.css";
 
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const FeedbackSchema = Yup.object().shape({
   email: Yup.string()
@@ -17,11 +20,21 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
+const notify = (text) => toast(text, { position: "right-center" });
+
 export default function LoginForm() {
   const userInputId = useId();
+  const dispatch = useDispatch();
 
   const handleSubmit = (event, actions) => {
-    console.log(event);
+    dispatch(login(event))
+      .unwrap()
+      .then(() => {
+        notify("Congratulations! You are logged in");
+      })
+      .catch(() => {
+        notify("Oops... An error occurred. Try again");
+      });
 
     actions.resetForm();
   };
@@ -60,6 +73,7 @@ export default function LoginForm() {
           </button>
         </Form>
       </Formik>
+      <Toaster />
     </>
   );
 }

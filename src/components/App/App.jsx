@@ -1,15 +1,6 @@
-import css from "./App.module.css";
-
-import ContactList from "../ContactList/ContactList";
-import SearchBox from "../SearchBox/SearchBox";
-import ContactForm from "../ContactForm/ContactForm";
-
 import { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "../../redux/contacts/operations";
-// import { selectError, selectLoading } from "../../redux/contactsSlice";
 import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Layout from "../Layout/Layout";
 import { Route, Routes } from "react-router";
 import { refreshUser } from "../../redux/auth/operations";
@@ -29,9 +20,6 @@ const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  // const loadingBoolean = useSelector(selectLoading);
-  // const errorBoolean = useSelector(selectError);
 
   useEffect(() => {
     dispatch(refreshUser());
